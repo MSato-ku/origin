@@ -1,0 +1,148 @@
+<div class="main">
+<div class="post">
+    <div class="tweet_upper">
+    <div class="tweet_upper_left">
+        <%# if user_signed_in? %>
+                <h2><%#= link_to "＜", user_path(current_user.id), class:'button' %></h2>
+                <h2><%= link_to '＜', :back %></h2>
+        <%# end %>
+        <div class="tweet_icon">
+            <%= image_tag @user.image_url, size: "40x40", class: "icon_image"%>
+            <h3><%= link_to @user.name, user_path(@user.id) %></h3>
+        </div>
+    </div>
+    <% if user_signed_in? %>
+        <% if current_user.id == @tweet.user_id %>
+    <div class="button2">
+            <%= link_to "編集", edit_tweet_path(@tweet.id) %>
+            <%= button_to "削除", tweet_path(@tweet.id), method: :delete, class:'button' %> 
+    </div>
+        <% end %>
+    <% end %>
+    </div>
+<div class="tweet">
+    <div class="tweet_box">
+        <p>
+        <%= image_tag @tweet.image_url, size: "250x200", class: "restaurant_image" %>
+        </p>
+    </div>
+    <div class="tweet_box">
+    <div class="tweet_containor">
+    <div class="tweet_comment">
+        <table class="yoko2">
+            <tr>
+                <th>店名</th>
+                <td><%= link_to(@tweet.name, @tweet.url) %></td>
+            </tr>
+
+        <tr>
+            <th>都道府県</th>
+            <td><%= @regions.name %></td>
+        </tr>
+
+        <tr>
+            <th>人数</th>
+            <% if @tweet.people == "1" %>
+                <td>~5人</td>
+            <% end %> 
+            <% if @tweet.people == "2" %>
+                <td>6~10人</td>
+            <% end %> 
+            <% if @tweet.people == "3" %>
+                <td>11~20人</td>
+            <% end %> 
+            <% if @tweet.people == "4" %>
+                <td>21~30人</td>
+            <% end %> 
+            <% if @tweet.people == "5" %>
+                <td>31~40人</td>
+            <% end %> 
+            <% if @tweet.people == "6" %>
+                <td>41~50人</td>
+            <% end %> 
+            <% if @tweet.people == "7" %>
+                <td>50人以上</td>
+            <% end %> 
+        </tr>
+
+        <tr>
+        <th>席タイプ</th>
+        <% if @tweet.seat == "1" %>
+            <td>テーブル</td>
+        <% end %> 
+        <% if @tweet.seat == "2" %>
+            <td>座敷</td>
+        <% end %> 
+        <% if @tweet.seat == "3" %>
+            <td>掘り炬燵</td>
+        <% end %> 
+        </tr>
+
+        <tr>
+        <th>個室</th>
+        <% if @tweet.personal == "1" %>
+            <td>あり</td>
+        <% end %> 
+        <% if @tweet.personal == "2" %>
+            <td>なし</td>
+        <% end %> 
+        </tr>
+
+        <tr>
+        <th>会費</th>
+        <% if @tweet.people == "1" %>
+            <td>~2000円</td>
+        <% end %> 
+        <% if @tweet.people == "2" %>
+            <td>~4000円</td>
+        <% end %> 
+        <% if @tweet.people == "3" %>
+            <td>~6000円</td>
+        <% end %> 
+        <% if @tweet.people == "4" %>
+            <td>~8000円</td>
+        <% end %> 
+        <% if @tweet.people == "5" %>
+            <td>~10000円</td>
+        <% end %> 
+        <% if @tweet.people == "6" %>
+            <td>~15000円</td>
+        <% end %> 
+        <% if @tweet.people == "7" %>
+            <td>15000円以上</td>
+        <% end %> 
+        </tr>
+        </table>
+
+        <p>
+        コメント<br>
+        <%= @tweet.comment %>
+        </p>
+    </div>
+
+        <p><%= @tweet.created_at.strftime('%Y/%m/%d') %></p>
+    </div>
+</div>
+</div>
+<div class="like">
+    <% if user_signed_in? %>
+        <% if current_user.already_liked?(@tweet) %>
+            <%= button_to tweet_like_path(@tweet), method: :delete do %>
+            <%#= button_to 'a', tweet_like_path(@tweet), :method => :delete, class:'button' %>
+            <%= image_tag "heart_pro.png", size: "25x25", class: "icon_image"%><%= @tweet.likes.count %>
+        <% end %>
+        <% else %>
+            <%= button_to tweet_likes_path(@tweet), method: :post do %>
+            <%#= button_to 'b', tweet_likes_path(@tweet), :method => :post, class:'button' %>
+            <%= image_tag "heart_pre.png", size: "25x25", class: "icon_image"%><%= @tweet.likes.count %>
+        <% end %>
+        <% end %>
+    <% else %>
+        <p>いいねの数 = </p><%= @tweet.likes.count %>
+    <% end %>
+</div>
+</div>
+    <%#= link_to "マイページに戻る", user_path(current_user.id), class:'button' %>
+</div>
+
+<%#= button_to '削除', event_path(@event.id), :method => :delete, class:'button' %>

@@ -1,0 +1,25 @@
+<div class="edit-main">
+<div class="center">
+<div class="sign-up">
+    <h2>編集</h2>
+</div>
+
+<%= form_for @event do |f| %>
+    <%= f.label :会の名前 %>
+    <%= f.text_field :party_name, :size => 30 %> <br />
+    <%= f.label :日程 %>
+    <%= f.date_field :date, :size => 30 %> <br />
+    <%= f.label :開始時間 %>
+    <%= f.time_field :time, :size => 30 %> <br />
+    <%= f.label :場所 %>
+    <%= f.text_field :restaurant_name, :size => 30 %> <br />
+    <%= f.label :店URL %>
+    <%= f.text_field :url, :size => 30 %> <br />
+    <%= f.label :会費 %>
+    <%= f.number_field :fee, :size => 10 %> <br />
+    <%= f.label :メモ %>
+    <%= f.text_area :memo, :size => "30x2" %> <br />
+    <%= f.submit "編集する", class:'button' %>
+<% end %>
+</div>
+</div>

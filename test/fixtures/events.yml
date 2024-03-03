@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  party_name: MyString
+  date: 2024-03-02
+  time: 2024-03-02 16:00:41
+  restaurant_name: MyString
+  fee: 1
+  memo: MyText
+  group_id: 1
+  user_id: 1
+  url: MyString
+
+two:
+  party_name: MyString
+  date: 2024-03-02
+  time: 2024-03-02 16:00:41
+  restaurant_name: MyString
+  fee: 1
+  memo: MyText
+  group_id: 1
+  user_id: 1
+  url: MyString

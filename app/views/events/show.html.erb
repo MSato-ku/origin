@@ -1,0 +1,202 @@
+<div class="main">
+
+<div class = "event-main">
+    <div class="new">
+        <h2><%= @event.party_name %> </h2>
+        <% if user_signed_in? %>
+            <% if current_user.id == @event.user_id %>
+            <div class="button2">
+            <b><%= button_to '削除', event_path(@event.id), :method => :delete, class:'button' %></b>
+            <b><%= button_to '編集', edit_event_path(@event.id), :method => :get, class:'button' %></b>
+            </div>
+            <% end %>
+        <% end %>
+    </div>
+
+
+<div class="event">
+<table class="yoko">
+    <tr>
+        <th>日程</th>
+        <td><%= @event.date %></td>
+    </tr>
+    <tr>
+        <th>開始時間</th>
+        <td><%= @event.time.strftime( "%H:%M" ) %></td>
+    </tr>
+    <tr>
+        <th>場所
+        <% if @event.url != nil %>
+        （リンク有）
+        <% end %>
+        </th>
+        <td><%= link_to(@event.restaurant_name, @event.url) %></td>
+    </tr>
+    <tr>
+        <th>会費</th>
+        <td><%= @event.fee %>円</td>
+    </tr>
+    <tr>
+        <th>メモ</th>
+        <td><%= @event.memo %></td> 
+    </tr>
+</table>
+</div>
+
+<div class="comment-wrapper">
+    <p>出欠リスト</p>
+    <%# if @events == @comment2.event_id %>
+    <%# if @comment2.event_id == @events %>
+    <table class="tate">
+        <tr>
+            <th>名前</th>
+            <th>出欠</th>
+            <th>会費</th>
+            <th>当日の出欠</th>
+            <th>コメント</th>
+            <th>編集</th>
+            <th>削除</th>
+        </tr>
+    <%# if @events == @comments %>
+        <% @comments.each do |c| %>
+        <tr>
+                <td><%= c.name %></td>
+            <% if c.attend == 1 %>
+                <td>⚪︎</td>
+            <% end %> 
+            <% if c.attend == 2 %>
+                <td>×</td>
+            <% end %> 
+            <% if c.attend == 3 %>
+                <td>△</td>
+            <% end %> 
+
+            <% if c.fee_confirm == "1" %>
+                <td>⚪︎</td>
+            <% end %> 
+            <% if c.fee_confirm == "2" %>
+                <td>-</td>
+            <% end %> 
+
+            <% if c.participate == "1" %>
+                <td>⚪︎</td>
+            <% end %> 
+            <% if c.participate == "2" %>
+                <td>-</td>
+            <% end %> 
+                <td><%= c.content %></td>
+            
+            <td><%= link_to '編集', edit_comment_path(c.id) %>
+            <%#= button_to 'Edit', event_path(id: c.id), method: :edit, class:'button' %></td>
+            <td><%=button_to "削除", comment_path(c.id), method: :delete, class:'button' %></td>
+        </tr>
+        <% end %>
+    </table>
+    <%# end %>
+</div>
+</div>
+
+<div class="event-main">
+<div class="matome">
+<table class="yoko">
+    <tr>
+        <th>回答者数</th>
+        <td><%= @comments.count%></td>
+    </tr>
+    <tr>
+        <th>参加人数</th>
+        <td><%= @comments.where(attend: 1).count%></td>
+    </tr>
+    <tr>
+        <th>会費確認</th>
+        <td><%= @comments.where(fee_confirm: 1).count%></td>
+    </tr>
+    <tr>
+        <th>到着人数</th>
+        <td><%= @comments.where(participate: 1).count%></td>
+    </tr>
+</table>
+</div>
+
+<div class="attendance">
+出欠登録
+    <%# if user_signed_in? %>
+        <%= form_with(model: [@event, @comment], local: true) do |f| %>
+
+        <div class="field">
+            <%= f.label :名前 %>
+            <%= f.text_field :name, :size => 30 %>
+        </div>
+
+        <div class="field">
+            <%= f.label :出欠 %>
+            <%= f.select :attend, {'参加': 1, '不参加': 2, '未定': 3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+        </div>
+
+        <div class="field">
+            <%#= f.label :出欠2 %>
+            <div class="check_box" >
+                <div class="check_box" >
+                    <%#= form_for @comment do |b| %>
+                        <%#= f.collection_check_boxes(:comment, :choice_ids, Choice.all, :id, :category) do |b| %>
+                        <%#= b.label { b.check_box + b.text } %>
+                        <%# end %>
+                    <%# end %>
+                </div>
+            </div>
+        </div>
+
+        <% if user_signed_in? %>
+        <div class="field">
+            <%= f.label :会費 %>
+                <%#= label_tag :fee_confirm, "済み" %>
+                <%#= check_box_tag :fee_confirm %>
+                <%= f.select :fee_confirm, {'済': 1, '未払い': 2}, { selected: 2 }, { class: 'form-control' , required: true } %>
+        </div>
+
+        <div class="field">
+            <%= f.label :当日の出欠 %>
+                <%#= check_box_tag :participate %>
+                <%#= label_tag :participate, "確認" %>   
+                <%= f.select :participate, {'到着': 1, '未着': 2}, { selected: 2 }, { class: 'form-control' , required: true } %>
+        </div>
+
+        <% else%>
+        <div class="field">
+            <div class="ghost">
+            <%= f.label :会費 %>
+                <%#= label_tag :fee_confirm, "済み" %>
+                <%#= check_box_tag :fee_confirm %>
+                <%= f.select :fee_confirm, {'済': 1, '未払い': 2}, { selected: 2 }, { class: 'form-control' , required: true } %>
+            </div>
+        </div>
+
+        <div class="field">
+                <div class="ghost">
+            <%= f.label :当日の出欠 %>
+                <%#= check_box_tag :participate %>
+                <%#= label_tag :participate, "確認" %>   
+                <%= f.select :participate, {'到着': 1, '未着': 2}, { selected: 2 }, { class: 'form-control' , required: true } %>
+            </div>
+        </div>
+        <% end %>
+        
+        <div class="field">
+            <%= f.label :メモ %>
+            <%= f.text_field :content, :size => 30 %>
+        </div>
+
+        <div class="form-group">
+            <%= f.submit '登録する', class: 'far fa-comments', class:'button' %>
+        </div>
+        <% end %>
+    <%# end %>
+</div>
+
+<div class="back">
+<%#= link_to "イベントページへ戻る",event_path(id: @comment.event_id) %>
+</div>
+<%# end %>
+</div>
+</div>
+</div>

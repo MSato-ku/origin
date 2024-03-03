@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>  <!-- 表示されない部分 -->
+        <meta charset="UTF-8">
+        <title>Myapp</title>     <!-- ブラウザのタイトルを指定 -->
+        <link rel="stylesheet" type="text/css" href="app/assetes/stylesheets/application.css">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%#= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header class="header-nav">
+      <nav><%= link_to "Home", statics_top_path%></nav>
+      <nav><%= link_to "About", statics_top_path%></nav>
+      <% if user_signed_in? %>
+        <nav><%= link_to "Mypage", user_path(current_user.id)%></nav>
+        <nav><%= button_to "Logout", destroy_user_session_path, method: :delete,  class:'button' %></nav>
+      <% else %>
+        <nav><%= link_to "Login", users_show_path%></nav>
+        <%# <nav><%= link_to "Login", events_index_path %>
+      <% end %> 
+    </header>
+
+    <div class="main">
+    <main style="flex: auto">
+    <%= yield %>
+    </main>
+    </div>
+
+
+  <div class="wrapper">
+    <footer>
+      <p>Copyright © 2023 もちなっとうチゲ All Rights Reserved</p>
+    </footer>
+  </div>
+  </body>
+</html>

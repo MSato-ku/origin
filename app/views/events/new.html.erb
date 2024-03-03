@@ -1,0 +1,64 @@
+<div class="main">
+<div class="all">
+    <div class="sign-up">
+        <h2>イベント作成</h2>
+    </div>
+
+<div class="new-form">
+<%= form_for(@event, :url => {controller:'events', action:'create'})do |f| %>
+    <div class="field">
+        <%= f.label :会の名前 %>
+        <%= f.text_field :party_name, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :日程 %>
+        <%= f.date_field :date, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :開始時間 %>
+        <div class="time">
+        <%= f.time_select :time, {:include_blank => true, :minute_step => 15}%>
+        </div>
+    </div>
+
+    <div class="field">
+        <%= f.label :場所 %>
+        <%= f.text_field :restaurant_name, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :店URL %>
+        <%= f.text_field :url, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :会費  %>
+        <%= f.number_field :fee, :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :メモ  %>
+        <%= f.text_area :memo, :size => "30x2" %>
+    </div>
+
+    <%# <div class="field"> %>
+        <%# <%= f.label :メンバー %>
+        <%# <%= f.number_field :group_id, :size => 10 %>
+    <%# </div> %>
+
+    <%# <div class="field"> %>
+        <%# <%= f.label :メンバー  %>
+        <%# <%= link_to "メンバー選択", new_member_path %>
+    <%# </div> %>
+    <div class="field">
+        <%= f.submit "イベントを作成する" , class:'button'%>
+    </div>
+<% end %>
+<div class="back">
+<%= link_to "戻る", user_path(current_user.id), class:'button' %>
+</div>
+</div>
+</div>
+</div>

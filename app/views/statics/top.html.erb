@@ -1,0 +1,52 @@
+<div class="main-top">
+    <div class="info-title">
+        <div class="inner">
+            <div class="title"></div>
+        </div>
+    </div>
+
+    <div class="about">
+        <div class="inner">
+        〜日程調整、お店探し、会費集めなど、やることが多い幹事さんのためのアプリ〜
+        </div>
+    </div>
+    
+    <div class="search">
+        <div class="inner">
+            <%= form_tag({controller:"statics",action:"top"}, method: :get) do |f| %>
+    <%#= form_for(@tweet, :url => {controller:'staticss', action:'top'})do |f| %>
+    <%= text_field_tag :search %>
+    <%#= f.label :都道府県 %>
+    <%# <%= select_tag :prefecture, grouped_options_for_select(@regions.map { |p| [ p.name, p.children.map { |c| [c.name, c.id]} ]}),{ prompt: '都道府県' } %>
+    <%#= f.label :人数 %>
+    <%#= select_tag :people, {'-5人': 1, '6-10人': 2, '11-20人': 3, '21-30人': 4, '31-40人': 5, '41-50人': 6, '50人以上': 7}, { class: 'form-control' , required: true } %>
+    <%#= select_tag :people_search, {'-5人': 1, '6-10人': 2, '11-20人': 3, '21-30人': 4, '31-40人': 5, '41-50人': 6, '50人以上': 7}, { class: 'form-control' , required: true } %>
+    <%#= select_tag :people_search, options_from_collection_for_select(@tweets, "id", "people") %>
+    <%#= select_tag :people_search, options_from_collection_for_select('-5人': 1, '6-10人': 2, '11-20人': 3, '21-30人': 4, '31-40人': 5, '41-50人': 6, '50人以上': 7) %>
+    <%#= f.label :席タイプ %>
+    <%#= f.select :seat, {'テーブル': 1, '座敷': 2, '掘り炬燵': 3, '個室': 4}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+    <%#= f.label :会費 %>
+    <%#= f.select :price, {'-2000円': 1, '-4000円': 2, '-6000円': 3, '-8000円': 4, '-10000円': 5, '-15000円': 6, '15000円以上': 7}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+
+
+    <%= submit_tag '検索する'  %>
+    <% end %>
+        </div>
+    </div>
+
+    <div class="restaurant">
+        <div class="tweet_index">
+                    <% @tweets.each do |tweet| %>
+                            <div class="tweet_detail">
+                                <%= link_to image_tag(tweet.image.to_s, size: "180x180", class: "icon_image2"), tweet_path(tweet.id) %>
+                                <%= tweet.name %> / <%= Region.find(tweet.prefecture).name %>
+                            </div>
+                    <% end %>
+        </div>
+        <div class="paginate-set">
+                <%= paginate @tweets %>
+        </div>
+    </div>
+
+
+</div>

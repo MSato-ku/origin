@@ -1,0 +1,20 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="members.scss" type="text/css">
+</head>
+<h1>
+    選択肢登録
+</h1>
+<body>
+    <%= form_for(@choice, :url => {controller:'choices', action:'create'})do |f| %>
+        <p>
+            <%= f.label :category, "選択肢" %><br>
+            <%= f.text_field :category %>
+        </p>
+        <%= f.submit "登録する", class:'button'%>
+    <% end %>
+</body>
+
+<%= link_to :back do %>
+    <button>戻る</button>
+<% end %>

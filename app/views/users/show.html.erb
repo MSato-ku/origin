@@ -1,0 +1,116 @@
+<%# <%= stylesheet_link_tag 'index', :media => "all" %>
+<div class="main">
+
+<% if user_signed_in? %>
+<% if current_user.id == @user.id %>
+<div class="mypage">
+<div class="events-container">
+    <div class="new">
+        <h3>イベント</h3>
+        <%= link_to "イベント新規作成", new_event_path %>
+    </div>
+    <div class="display">
+        <p><%#= page_entries_info @events %></p>
+        <div class="each_events">
+            <% @events.each do |event| %>
+                <div class="main-box">
+                    <div class="left-container">
+                        <%= event.party_name %>
+                    </div>
+                    <div class="right-container">
+                        <%= link_to "詳細", event_path(event.id) %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <%= paginate @events, :param_name => 'events_page' %>
+        <%#= will_paginate @events, :param_name => 'events_page', %>
+    </div>
+</div>
+
+<br />
+
+<div class='col-md-8 offset-md-1'>
+    <div class="new">
+        <h3>お気に入り一覧</h3>
+    </div>
+        <div class="display">
+        <p><%#= page_entries_info @tweets %></p>
+        <div class="each_events">
+            <% @like_posts.each do |like_post| %>
+                <div class="main-box">
+                    <div class="left-container">
+                        <%= like_post.name %> /
+                        <%= Region.find(like_post.prefecture).name %>
+                    </div>
+                    <div class="right-container">
+                        <%= link_to "詳細", tweet_path(like_post.id) %>
+                    </div>
+                </div>
+            <% end %>
+            </div>
+        </div>
+        <div class="paginate-set">
+        <%= paginate @like_posts, :param_name => 'like_posts_page' %>
+        </div>
+</div>
+</div>
+<% end %>
+<% end %>
+
+<div class="profile">
+    <div class="details">
+        <div class="name">
+            <%= image_tag @user.image_url, size: "200x200", class: "icon_image" %>
+            <p><h1><%= @user.name %></h1></p>
+        </div>
+
+        <div class="introduction">
+            <% if user_signed_in? %>
+                <% if current_user.id == @user.id %>
+                    <p>メールアドレス : <%= @user.email %></p>
+                <% end %>
+            <% end %>
+            <p>プロフィール : <%= @user.profile %></p>
+        </div>
+
+<div class='col-md-8 offset-md-1'>
+    <div class="new">
+        <h3>投稿一覧</h3>
+        <% if user_signed_in? %>
+        <% if current_user.id == @user.id %>
+            <%= link_to "新規投稿", tweets_new_path %>
+        <% end %>
+        <% end %>
+    </div>
+        <div class="display">
+        <p><%#= page_entries_info @tweets %></p>
+        <div class="each_events">
+            <% @tweets.each do |tweet| %>
+                <div class="main-box">
+                    <div class="left-container">
+                        <%= tweet.name %> /
+                        <%= Region.find(tweet.prefecture).name %>
+                        <%#= tweet.created_at.strftime('%Y/%m/%d') %>
+                    </div>
+                    <div class="right-container">
+                        <%= link_to "詳細", tweet_path(tweet.id) %>
+                    </div>
+                </div>
+            <% end %>
+            </div>
+        </div>
+        <div class="paginate-set">
+        <%= paginate @tweets, :param_name => 'tweets_page' %>
+        </div>
+</div>
+
+    <% if user_signed_in? %>
+        <% if current_user.id == @user.id %>
+            <%= link_to "編集", edit_user_registration_path %>
+        <% end %>
+    <% end %>
+    </div>
+</div>
+
+</div>

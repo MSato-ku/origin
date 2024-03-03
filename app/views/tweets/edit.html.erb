@@ -1,0 +1,50 @@
+<div class="edit-main">
+<div class="center">
+<div class="sign-up">
+    <h2>編集</h2>
+</div>
+<%= form_for @tweet do |f| %>
+    <div class="edition">
+    <div class="field">
+        <%= f.label :店名 %>
+        <%= f.text_field :name, :size => 30 %>
+    </div>
+    <div class="field">
+        <%= f.label :店URL %>
+        <%= f.text_field :url, :size => 30 %>
+    </div>
+    <div class="field">
+        <%= f.label :都道府県 %>
+        <%= f.select :prefecture, grouped_options_for_select(@regions.map { |p| [ p.name, p.children.map { |c| [c.name, c.id]} ]}, :selected => @tweet.prefecture) %>
+    </div>
+    <div class="field">
+        <%= f.label :人数 %>
+        <%= f.select :people, {'-5人': 1, '6-10人': 2, '11-20人': 3, '21-30人': 4, '31-40人': 5, '41-50人': 6, '50人以上': 7}, { selected: @tweet.people }, { class: 'form-control' , required: true } %>
+    </div>
+    <div class="field">
+        <%= f.label :席タイプ %>
+        <%= f.select :seat, {'テーブル': 1, '座敷': 2, '掘り炬燵': 3}, { selected: @tweet.seat }, { class: 'form-control' , required: true } %>
+    </div>
+    <div class="field">
+        <%= f.label :個室 %>
+        <%= f.select :personal, {'あり': 1, 'なし': 2}, { selected: @tweet.personal }, { class: 'form-control' , required: true } %>
+    </div>
+    <div class="field">
+        <%= f.label :会費 %>
+        <%= f.select :price, {'-2000円': 1, '-4000円': 2, '-6000円': 3, '-8000円': 4, '-10000円': 5, '-15000円': 6, '15000円以上': 7}, { selected: @tweet.price }, { class: 'form-control' , required: true } %>
+    </div>
+    <div class="field">
+        <%= f.label :コメント %>
+        <%= f.text_field :comment, :size => 30 %>
+    </div>
+    <div class="field">
+        <%= f.label :店舗画像 %>&ensp;
+        <%= f.file_field :image %>
+    </div>
+    <div class="field">
+        <%= f.submit "編集する", class:'button' %>
+    </div>
+    </div>
+<% end %>
+</div>
+</div>

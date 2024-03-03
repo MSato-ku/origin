@@ -1,0 +1,56 @@
+<div class="edit-main">
+<div class="center">
+<div class="sign-up">
+    <h2>編集</h2>
+</div>
+
+<%= form_for @comment do |f| %>
+<div class="edition">
+    <div class="field">
+    <%= f.label :名前 %>&ensp;
+    <%= f.text_field :name, :size => 30 %> 
+    </div>
+
+    <div class="field">
+    <%= f.label :出欠 %>&ensp;
+    <%= f.select :attend, {'参加': 1, '不参加': 2, '未定': 3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %> 
+    <% if user_signed_in? %>
+        </div>
+        <div class="field">
+        <%= f.label :会費 %>&ensp;
+        <%= f.select :fee_confirm, {'済': 1, '未払い': 2}, { class: 'form-control' , required: true } %>
+        </div>
+
+        <div class="field">
+        <%= f.label :当日の出欠 %> &ensp;
+        <%= f.select :participate, {'到着': 1, '未着': 2}, { class: 'form-control' , required: true } %>
+    <% else %>
+        <div class="ghost">
+        <div class="field">
+        <%= f.label :会費 %>&ensp;
+        <%= f.select :fee_confirm, {'済': 1, '未払い': 2}, { selected: @comment.fee_confirm }, { class: 'form-control' , required: true } %>
+        </div>
+
+        <div class="field">
+        <%= f.label :当日の出欠 %> &ensp;
+        <%= f.select :participate, {'到着': 1, '未着': 2}, { selected: @comment.participate }, { class: 'form-control' , required: true } %>
+        </div>
+        </div>
+    <% end %>
+    </div>
+
+    <div class="field">
+    <%= f.label :メモ %>&ensp;
+    <%= f.text_field :content, :size => 30 %>
+    </div>
+
+    <div class="form-group">
+    <%= f.submit "編集する", class:'button' %>
+    </div>
+</div>
+<div class="back">
+<%= link_to "イベントページへ戻る",event_path(id: @comment.event_id), class:'button' %>
+</div>
+<% end %>
+</div>
+</div>

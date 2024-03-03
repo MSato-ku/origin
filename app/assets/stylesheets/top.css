@@ -1,0 +1,140 @@
+.main-top{
+    width: 100%;
+    min-height: 100vh;
+    top: 10px;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+
+}
+
+.info-title{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    color: #B17457;
+    font-size: 100px;
+    width: 400px;
+    height: 200px;
+    margin-top: 15px;
+
+
+    background-image: url("title-back.png");
+    background-size: cover;
+}
+
+.about{
+    width: 100%;
+    height: 70px;
+    color: #4A4947;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    color: #4A4947;
+    background-color: #D8D2C2;
+}
+
+.restaurant{
+    /* background-image: url("restaurant-back.jpg"); */
+    background-size: cover;
+    object-fit: contain;
+    width: 100%;
+    height: 463px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    justify-content:space-between;
+    
+
+    color: #4A4947;
+}
+
+.tweet_index{
+    width: 70%;
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.tweet_detail{
+    display: flex;
+    flex-flow: column;
+
+
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 8px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 8px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    border-bottom: 2px solid #D8D2C2;
+    color: #333;
+    text-decoration: none;
+}
+
+.current {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    border-bottom: 2px solid #B17457;
+    pointer-events: none;
+}
+
+.paginatation{
+    position: relative;
+    top: 125px;
+}
+
+.icon_image2{
+    border-radius: 0px;   /* 画像を丸くする*/
+    object-fit: cover;      /* タテヨコ比を変えないままトリミング*/
+}

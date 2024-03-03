@@ -1,0 +1,348 @@
+.main{
+    background-color: #FAF7F0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    height: 60px;
+    width: 100%;
+    
+    font-size: 15px;
+    color: #4a4947;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mypage{
+    margin-top: 20px;
+    margin-left: 20px;
+    flex: 3;
+    height: 100vh;
+}
+
+.events-container{
+    height: 45%;
+}
+
+.new{
+    height: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+
+.display{
+    height: 75%;
+}
+
+.main-box{
+    display: flex;
+}
+
+.left-container{
+    margin-left: 20px;
+    width: 60%;
+}
+
+.right-container{
+    width: 40%;
+}
+
+.col-md-8{
+    height: 40%
+}
+
+.profile{
+    flex: 2;
+    height: 100vh;
+
+    background-color: #D8D2C2;
+}
+
+.details{
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 100vh;
+}
+
+.name{
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.introduction{
+    height: 15%;
+    margin-top: 20px;
+}
+
+.event-main{
+    margin-top: 20px;
+    top: 0;
+    z-index: 999;
+    height: 100%;
+    width: 500px;
+    
+    font-size: 15px;
+    color: #4a4947;
+
+    display: flex;
+    flex-flow: column;
+}
+
+.attendance{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 300px;
+}
+
+.comment-wrapper{
+    margin-top: 20px;
+}
+
+.button2{
+    width: 70px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.event{
+    width: 480px;
+
+    align-items: center;
+}
+
+table.yoko2{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+table.yoko2 tr{
+    border-bottom: solid 1px #4A4947;
+}
+
+table.yoko2 th{
+    background-color: #D8D2C2;
+    color:#4A4947;
+    border:solid 1px #4A4947;
+    text-align: center;
+    padding: 3px 0;
+}
+
+table.yoko2 td{
+    color:#4A4947;
+    border:solid 1px #4A4947;
+    text-align: center;
+    padding: 3px 0;
+}
+
+table.yoko{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.yoko tr{
+    border-bottom: solid 1px #4A4947;
+}
+
+table.yoko th{
+    background-color: #B17457;
+    color:#FAF7F0;
+    border:solid 1px #4A4947;
+    text-align: center;
+    padding: 5px 0;
+}
+
+table.yoko td{
+    color:#4A4947;
+    border:solid 1px #4A4947;
+    text-align: center;
+    padding: 5px 0;
+}
+
+table.tate{
+    height: 500px;
+    width: 100%;
+    border-collapse: collapse;
+    
+    display: block;
+    overflow-y: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+table tbody {
+    width: 99%;
+    display:table;
+}
+
+table.tate th{
+    background-color: #D8D2C2;
+    color:#4A4947;
+    border:solid 1px #4A4947;
+    text-align: center;
+    padding: 5px 0;
+}
+
+table.tate td{
+    color:#4A4947;
+    border:solid 1px #4A4947;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.form-group{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ghost {
+    display: none;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 8px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 8px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    border-bottom: 2px solid #D8D2C2;
+    color: #333;
+    text-decoration: none;
+}
+
+.current {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    border-bottom: 2px solid #B17457;
+    pointer-events: none;
+}
+
+.paginatation{
+    position: relative;
+    top: 125px;
+}
+
+.icon_image {
+    border-radius: 100px;   /* 画像を丸くする*/
+    object-fit: cover;      /* タテヨコ比を変えないままトリミング*/
+}
+
+.each_events{
+    height: 125px;
+}
+
+.restaurant_image {
+    width: 394px;
+    height: 394px;          /* サイズ指定 */
+    /* border-radius: 100px;   画像を丸くする */
+    object-fit: cover;      /* タテヨコ比を変えないままトリミング*/
+}
+
+.tweet_box{
+    width: 394px;
+    height: 394px; 
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+
+    border-width: 3px;
+    border-style: solid;
+    border-color: #4A4947;
+}
+.tweet_containor{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 374px;
+    height: 374px; 
+
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.tweet{
+    margin-top: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 400px;
+}
+
+.tweet_comment{
+    font-size: 17px;
+}
+
+.tweet_upper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tweet_upper_left{
+    gap: 15px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tweet_icon{
+    gap: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post{
+    width: 800px;
+    margin-top: 20px;
+
+    display: flex;
+    flex-flow: column;
+}
+
+.matome{
+    margin-top: 50px;
+    margin-left: 20px;
+    width: 300px;
+    height: 190px;
+}
+
+.like{
+    margin-top: 5px;
+    margin-left: 3px;
+    align-items: center;
+}
